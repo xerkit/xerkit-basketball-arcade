@@ -1,0 +1,18 @@
+label {
+    vertical-align: top;
+    background-color: lightcyan;
+    height: auto;
+    width: auto;
+    padding-top: 20px;
+    padding-left: 40px; 
+    text-align: center;
+}
+img {
+    display: block;
+}
+button {
+    color: #000;
+}
+top-score-layout-border {
+    margin: 20px;
+}

@@ -1,3 +1,4 @@
+import { TopScoreScreenComponent } from './pages/top-score-screen/top-score-screen.component';
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
@@ -24,7 +25,8 @@ import { ItemDetailComponent } from "./item/item-detail.component";
     declarations: [
         AppComponent,
         ItemsComponent,
-        ItemDetailComponent
+        ItemDetailComponent,
+        TopScoreScreenComponent
     ],
     providers: [
         ItemService
