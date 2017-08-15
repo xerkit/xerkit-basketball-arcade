@@ -1,0 +1,10 @@
+### VisualStudioCode ###
+xerkit-basketball-arcade-app/.vscode/*
+xerkit-basketball-arcade-app/!.vscode/settings.json
+xerkit-basketball-arcade-app/!.vscode/tasks.json
+xerkit-basketball-arcade-app/!.vscode/launch.json
+xerkit-basketball-arcade-app/!.vscode/extensions.json
+
+xerkit-basketball-arcade-app/platforms/*
+xerkit-basketball-arcade-app/node_modules/*
+xerkit-basketball-arcade-app/functions/node_modules/*
