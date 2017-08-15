@@ -1,0 +1,5 @@
+//it can show a "Play" button
+//it can show a "Top Score" button
+//it can show a "App Title"
+//it can show a "App Logo" 
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibGFuZGluZy1zY3JlZW4uY29tcG9uZW50LnNwZWMuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJsYW5kaW5nLXNjcmVlbi5jb21wb25lbnQuc3BlYy50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQSw2QkFBNkI7QUFDN0Isa0NBQWtDO0FBQ2xDLDJCQUEyQjtBQUMzQiwwQkFBMEIiLCJzb3VyY2VzQ29udGVudCI6WyIvL2l0IGNhbiBzaG93IGEgXCJQbGF5XCIgYnV0dG9uXG4vL2l0IGNhbiBzaG93IGEgXCJUb3AgU2NvcmVcIiBidXR0b25cbi8vaXQgY2FuIHNob3cgYSBcIkFwcCBUaXRsZVwiXG4vL2l0IGNhbiBzaG93IGEgXCJBcHAgTG9nb1wiIl19
