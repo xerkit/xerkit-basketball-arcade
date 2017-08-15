@@ -3,9 +3,9 @@ import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 import { AppRoutingModule } from "./app.routing";
 import { AppComponent } from "./app.component";
 
-import { ItemService } from "./item/item.service";
-import { ItemsComponent } from "./item/items.component";
-import { ItemDetailComponent } from "./item/item-detail.component";
+import { LandingScreenComponent } from "./pages/landing-screen/landing-screen.component";
+import { PlayScreenComponent } from "./pages/play-screen/play-screen.component";
+import { NavigationService } from "./services/navigation/navigation.service";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -23,11 +23,11 @@ import { ItemDetailComponent } from "./item/item-detail.component";
     ],
     declarations: [
         AppComponent,
-        ItemsComponent,
-        ItemDetailComponent
+        PlayScreenComponent,
+        LandingScreenComponent
     ],
     providers: [
-        ItemService
+        NavigationService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
