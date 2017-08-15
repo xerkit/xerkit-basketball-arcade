@@ -1,14 +1,14 @@
 import { NgModule } from "@angular/core";
+import { PlayScreenComponent } from "./pages/play-screen/play-screen.component";
+import { LandingScreenComponent } from "./pages/landing-screen/landing-screen.component";
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { Routes } from "@angular/router";
 
-import { ItemsComponent } from "./item/items.component";
-import { ItemDetailComponent } from "./item/item-detail.component";
 
 const routes: Routes = [
-    { path: "", redirectTo: "/items", pathMatch: "full" },
-    { path: "items", component: ItemsComponent },
-    { path: "item/:id", component: ItemDetailComponent },
+    { path: "", redirectTo: "/landing-screen", pathMatch: "full" },
+    { path: "landing-screen", component: LandingScreenComponent},
+    { path: "play-screen", component: PlayScreenComponent}
 ];
 
 @NgModule({
