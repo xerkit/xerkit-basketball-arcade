@@ -26,6 +26,10 @@ export class NavigationService {
     this._router.navigate(["/landing-screen"], { clearHistory: clearHistory });
   }
 
+  public navigateToTopScoreScreen(clearHistory: boolean = false){
+    this._router.navigate(["/top-score-screen"], { clearHistory: clearHistory });
+  }
+
   private handleErrors(error: Response) {
     console.log(JSON.stringify(error.json()));
     return Observable.throw(error);

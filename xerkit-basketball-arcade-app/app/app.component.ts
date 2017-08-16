@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Page } from "ui/page";
+import { Page }from "ui/page";
 import { setCurrentOrientation, orientationCleanup } from 'nativescript-screen-orientation';
 
 

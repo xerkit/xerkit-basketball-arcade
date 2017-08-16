@@ -1,11 +1,11 @@
 label {
     vertical-align: top;
-    background-color: lightcyan;
     height: auto;
     width: auto;
     padding-top: 20px;
     padding-left: 40px; 
     text-align: center;
+    
 }
 img {
     display: block;
@@ -13,9 +13,11 @@ img {
 button {
     color: #000;
 }
-top-score-layout-border {
-    margin: 20px;
+.top-score-screen-label {
+    margin-left: 5%;
+    margin-right: 5%;
+    text-align: center;
 }
-top-score-screen-main-layout {
-    background-attachment: url("res:basketball_court_background.jpg");
+.top-score-screen-layout-border :first-child {
+    margin-left: 10%;
 }
