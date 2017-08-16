@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
-import { Page } from "ui/page";
-import {setCurrentOrientation , orientationCleanup} from 'nativescript-screen-orientation';
+import { Page }from "ui/page";
+import { setCurrentOrientation, orientationCleanup } from 'nativescript-screen-orientation';
+
 
 @Component({
     selector: "ns-app",
@@ -8,14 +9,16 @@ import {setCurrentOrientation , orientationCleanup} from 'nativescript-screen-or
 })
 
 export class AppComponent {
-    constructor(_page:Page) {
-        _page.on("navigatedTo",function(){
-            setCurrentOrientation("landscape",function(){
-            console.log("portrait orientation");
+    constructor(_page: Page) {
+        _page.on("navigatedTo", function () {
+            setCurrentOrientation("landscape", function () {
+                console.log("landscape orientation");
             });
         });
-        _page.on("navigatingFrom",function(){
+        _page.on("navigatingFrom", function () {
             orientationCleanup();
         });
-     }
- }
+    };
+}
+
+
