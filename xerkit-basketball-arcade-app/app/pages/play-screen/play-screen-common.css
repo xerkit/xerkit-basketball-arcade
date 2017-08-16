@@ -1,4 +1,15 @@
 .textCenter {
+    font-size: 42;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    color: green;
+}
+
+.textCenterSmall {
     font-size: 32;
     text-align: center;
+    display: flex;
+    align-items: center;
+    color: red;
 }
