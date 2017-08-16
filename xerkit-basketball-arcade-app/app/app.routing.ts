@@ -7,7 +7,7 @@ import { Routes } from "@angular/router";
 
 
 const routes: Routes = [
-  { path: "", redirectTo: "/landing-screen", pathMatch: "full" },
+  { path: "", redirectTo: "/top-score-screen-component", pathMatch: "full" },
     { path: "top-score-screen-component", component:  TopScoreScreenComponent},
     { path: "landing-screen", component: LandingScreenComponent},
     { path: "play-screen", component: PlayScreenComponent}

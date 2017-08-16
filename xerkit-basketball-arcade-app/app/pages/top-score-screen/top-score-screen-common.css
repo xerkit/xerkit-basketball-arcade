@@ -16,3 +16,6 @@ button {
 top-score-layout-border {
     margin: 20px;
 }
+top-score-screen-main-layout {
+    background-attachment: url("res:basketball_court_background.jpg");
+}
