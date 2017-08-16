@@ -19,4 +19,8 @@ export class LandingScreenComponent implements OnInit {
     goToPlayScreen() {
         this._navigationService.navigateToPlayScreen(false);
     }
+
+    goToTopScoreScreen() {
+        this._navigationService.navigateToTopScoreScreen(false);
+    }
 }

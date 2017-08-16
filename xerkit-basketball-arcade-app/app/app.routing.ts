@@ -8,9 +8,9 @@ import { Routes } from "@angular/router";
 
 const routes: Routes = [
   { path: "", redirectTo: "/landing-screen", pathMatch: "full" },
-    { path: "top-score-screen-component", component:  TopScoreScreenComponent},
     { path: "landing-screen", component: LandingScreenComponent},
-    { path: "play-screen", component: PlayScreenComponent}
+    { path: "play-screen", component: PlayScreenComponent},
+    { path: "top-score-screen", component:  TopScoreScreenComponent}
 ];
 
 @NgModule({
