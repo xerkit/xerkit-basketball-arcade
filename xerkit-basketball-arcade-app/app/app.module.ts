@@ -24,9 +24,9 @@ import { NavigationService } from "./services/navigation/navigation.service";
     ],
     declarations: [
         AppComponent,
-        TopScoreScreenComponent,
+        LandingScreenComponent,
         PlayScreenComponent,
-        LandingScreenComponent
+        TopScoreScreenComponent
     ],
     providers: [
         NavigationService
