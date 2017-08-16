@@ -23,4 +23,14 @@ export class LandingScreenComponent implements OnInit {
     goToTopScoreScreen() {
         this._navigationService.navigateToTopScoreScreen(false);
     }
+
+    isBluetoothConnected: boolean = false;
+
+    get bluetoothIcon(): string {
+        return this.isBluetoothConnected ? "res://bluetooth_button_connected" : "res://bluetooth_button_disconnected";
+    }
+
+    toggleBluetoothIcon() {
+        this.isBluetoothConnected = !this.isBluetoothConnected;
+    }
 }
