@@ -7,6 +7,7 @@ import { AppComponent } from "./app.component";
 import { LandingScreenComponent } from "./pages/landing-screen/landing-screen.component";
 import { PlayScreenComponent } from "./pages/play-screen/play-screen.component";
 import { NavigationService } from "./services/navigation/navigation.service";
+import { BluetoothService } from "./services/bluetooth/bluetooth.service";
 
 // Uncomment and add to NgModule imports if you need to use two-way binding
 // import { NativeScriptFormsModule } from "nativescript-angular/forms";
@@ -29,7 +30,8 @@ import { NavigationService } from "./services/navigation/navigation.service";
         TopScoreScreenComponent
     ],
     providers: [
-        NavigationService
+        NavigationService,
+        BluetoothService
     ],
     schemas: [
         NO_ERRORS_SCHEMA
