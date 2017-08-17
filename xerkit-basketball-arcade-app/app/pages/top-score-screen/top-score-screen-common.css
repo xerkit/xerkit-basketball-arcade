@@ -6,14 +6,28 @@ label {
 img {
     display: block;
 }
-button {
-    color: #000;
+.top-score-layout-border {
+    font-weight: bold;
 }
-.top-score-screen-label {
+
+StackLayout Label {
     margin-left: 5%;
     margin-right: 5%;
     text-align: center;
 }
-.top-score-layout-border {
+StackLayout Image {
+    height : 25%;
+    width: auto;
+    margin-Left:20%;
+    margin-Right:20%;
+    vertical-align: left;
+    margin-top: 3%;
+}
+GridLayout {
+    height: 60%;
+    width: 90%;
+    margin: 5%;
+}
+.top-score-screen-header {
     font-weight: bold;
 }

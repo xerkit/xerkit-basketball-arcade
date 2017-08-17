@@ -1,6 +1,7 @@
-let sound = require('nativescript-sound');
 import { Component, OnInit } from "@angular/core";
 import { Page } from "ui/page";
+
+let sound = require('nativescript-sound');
 
 @Component({
     selector: "playScreen",
