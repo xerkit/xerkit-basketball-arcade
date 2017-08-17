@@ -12,7 +12,7 @@ refer to http://docs.nativescript.org/ui/theme.
 
 @import 'nativescript-theme-core/css/core.light.css';
 .backgroundImage {
-    background-image: url("res://basketball_court_background");
+    background-image: url("res://basketball_court");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

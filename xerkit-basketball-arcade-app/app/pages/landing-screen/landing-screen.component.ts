@@ -5,6 +5,8 @@ import { Page } from "ui/page";
 import { NavigationService } from "../../services/navigation/navigation.service"
 
 import bluetooth = require('nativescript-bluetooth');
+import * as dialogs from "ui/dialogs";
+import { setCurrentOrientation, orientationCleanup } from 'nativescript-screen-orientation';
 
 @Component({
     selector: "landingScreen",
@@ -18,11 +20,19 @@ export class LandingScreenComponent implements OnInit {
     bleDevicesFound: any[] = [];
     selectedDeviceIndex: number = -1;
     chosenBleDevice: any = null;
-    isBluetoothConnected: boolean = false;
     isBluetoothDeviceConnected: boolean = false;
     isBluetoothEnabled: boolean = false;
 
-    constructor(private _page: Page, private _ngZone: NgZone, private _navigationService: NavigationService, private _bluetoothService: BluetoothService) { }
+    constructor(private _page: Page, private _ngZone: NgZone, private _navigationService: NavigationService, private _bluetoothService: BluetoothService) {
+        _page.on("navigatedTo", function () {
+            setCurrentOrientation("landscape", function () {
+                console.log("landscape orientation");
+            });
+        });
+        _page.on("navigatingFrom", function () {
+            orientationCleanup();
+        });
+    };
 
     get bluetoothDeviceConnectionStatus(): string {
         return this.isBluetoothDeviceConnected ? "Device Connected" : "Device Not Connected";
@@ -62,7 +72,7 @@ export class LandingScreenComponent implements OnInit {
             self._ngZone.run(() => {
                 this.isBluetoothDeviceConnected = isBleDeviceConnected;
                 if (isBleDeviceConnected) {
-                    //this._navigationService.navigateToControlPage();
+                    this.goToPlayScreen();
                 }
             });
         });
@@ -78,16 +88,14 @@ export class LandingScreenComponent implements OnInit {
         this._navigationService.navigateToTopScoreScreen(false);
     }
 
-    get bluetoothIcon(): string {
+    onPlayTap() {
         if (this.isBluetoothEnabled) {
-            return this.isBluetoothConnected ? "res://bluetooth_button_connected" : "res://bluetooth_button_disconnected";
+            //show list of bluetooth devices in a dialog
         } else {
-            return "res://bluetooth_button_disable";
+            dialogs.alert("Enable Bluetooth First").then(() => {
+                console.log("Bluetooth not enabled");
+            });
         }
-    }
-
-    toggleBluetoothIcon() {
-        this.isBluetoothConnected = !this.isBluetoothConnected;
     }
 
     ngOnDestroy() {
