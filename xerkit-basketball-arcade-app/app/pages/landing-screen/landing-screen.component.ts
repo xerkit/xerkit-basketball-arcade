@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs/Rx';
 import { BluetoothService } from '../../services/bluetooth/bluetooth.service';
-import { Component, ElementRef, OnInit, ViewChild, NgZone, OnDestroy } from "@angular/core";
+import { Component, ElementRef, OnInit, ViewChild, NgZone, OnDestroy, ViewContainerRef } from "@angular/core";
 import { Page } from "ui/page";
 import { NavigationService } from "../../services/navigation/navigation.service"
 
@@ -22,6 +22,7 @@ export class LandingScreenComponent implements OnInit {
     chosenBleDevice: any = null;
     isBluetoothDeviceConnected: boolean = false;
     isBluetoothEnabled: boolean = false;
+    arrayList: Array<string>;
 
     constructor(private _page: Page, private _ngZone: NgZone, private _navigationService: NavigationService, private _bluetoothService: BluetoothService) {
         _page.on("navigatedTo", function () {
@@ -58,6 +59,8 @@ export class LandingScreenComponent implements OnInit {
         this.bleDevicesFoundSubscription = this._bluetoothService.bleDevicesFound$.subscribe((devicesFound) => {
             self._ngZone.run(() => {
                 this.bleDevicesFound = devicesFound;
+                this.arrayList = this.bleDevicesFound.map(devices => devices.name);
+                this.showModal();
             });
         });
 
@@ -78,6 +81,21 @@ export class LandingScreenComponent implements OnInit {
         });
 
         this._page.actionBarHidden = true;
+    }
+    public showModal() {
+        let options = {
+            title: "Bluetooth Devices",
+            message: "Select device to connect",
+            cancelButtonText: "Cancel",
+            actions: this.arrayList
+        };
+
+        dialogs.action(options).then((result) => {
+            console.log(result);
+            
+            this._bluetoothService.setbleDeviceChosen(this.bleDevicesFound[this.arrayList.indexOf(result)]);
+            this._bluetoothService.connectToBleDevice(this.bleDevicesFound[this.arrayList.indexOf(result)]);
+        });
     }
 
     goToPlayScreen() {

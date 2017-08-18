@@ -119,6 +119,7 @@ export class BluetoothService {
     }
 
     connectToBleDevice(bleDevice: any) {
+        console.log(bleDevice.UUID);
         var self = this;
         bluetooth.connect({
             UUID: bleDevice.UUID,
@@ -216,11 +217,5 @@ export class BluetoothService {
     sendSetEngineIgnitionStatusOff(){
         this.sendMessageToBleDevice("password|C0");
     }
-
-    // disconnect(UUID: string): void {
-    //     bluetooth.disconnect({ UUID: UUID })
-    //         .then(() => console.log("Disconnected successfully"),
-    //         (err) => console.log("Disconnection error: " + err));
-    // }
 
 }
