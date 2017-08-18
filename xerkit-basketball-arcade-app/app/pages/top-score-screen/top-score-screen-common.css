@@ -20,7 +20,6 @@ StackLayout Image {
     width: auto;
     margin-Left:20%;
     margin-Right:20%;
-    vertical-align: left;
     margin-top: 3%;
 }
 GridLayout {

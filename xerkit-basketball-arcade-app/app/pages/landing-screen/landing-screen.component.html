@@ -1,10 +1,10 @@
 <AbsoluteLayout class="backgroundImage">
     <StackLayout height="100%" width="100%">
-        <Image src="res://basketball_arcade" height="40%" width="auto" style.marginTop="3%" style.marginLeft="10%" style.marginRight="10%"></Image>
-        <StackLayout orientation="vertical" height="60%">
-            <Image src="res://play_button" (tap)="goToPlayScreen()" width="auto" style.marginLeft="30%" style.marginRight="30%"></Image>
-            <Image src="res://top_score_button" (tap)="goToTopScoreScreen()" width="auto" style.marginLeft="40%" style.marginRight="40%"></Image>
+        <Image id="basketballRing" src="res://basketball_ring" height="50%" width="40%" style.marginLeft="30%" style.marginRight="30%"></Image>
+        <StackLayout orientation="horizontal" height="50%" width="60%" style.marginLeft="20%" style.marginRight="20%">
+            <Image src="res://settings_button" height="25%" width="20%" style.marginLeft="10%"></Image>
+            <Image src="res://play_button" (tap)="goToPlayScreen()" width="20%" height="90%" style.marginLeft="10%" style.marginRight="10%"></Image>
+            <Image src="res://trophy_button" (tap)="goToTopScoreScreen()" height="25%" width="20%" style.marginRight="10%"></Image>
         </StackLayout>
     </StackLayout>
-    <Image src="{{bluetoothIcon}}" (tap)="toggleBluetoothIcon()" height="20%" width="auto" style.marginLeft="85%" style.marginRight="2%"></Image>
 </AbsoluteLayout>

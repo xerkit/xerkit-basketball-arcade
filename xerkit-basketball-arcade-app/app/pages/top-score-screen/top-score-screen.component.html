@@ -1,23 +1,17 @@
 <StackLayout class="backgroundImage">
     <Image class="top-score-screen-header-image" src="res://top_score"></Image>
-    <GridLayout columns="*, *, *" rows="*, *, *, *, *, *">
-        <Label class="top-score-screen-header" text="RANK" row="0" col="0"></Label>
-        <Label class="top-score-screen-header" text="NAME" row="0" col="1"></Label>
-        <Label class="top-score-screen-header" text="SCORE" row="0" col="2"></Label>
-        <Label text="1" row="1" col="0"></Label>
-        <Label text="Raven" row="1" col="1"></Label>
-        <Label text="25" row="1" col="2"></Label>
-        <Label text="2" row="2" col="0"></Label>
-        <Label text="Cliff" row="2" col="1"></Label>
-        <Label text="24" row="2" col="2"></Label>
-        <Label text="3" row="3" col="0"></Label>
-        <Label text="Mike" row="3" col="1"></Label>
-        <Label text="23" row="3" col="2"></Label>
-        <Label text="4" row="4" col="0"></Label>
-        <Label text="Chocoro" row="4" col="1"></Label>
-        <Label text="22" row="4" col="2"></Label>
-        <Label text="5" row="5" col="0"></Label>
-        <Label text="Francis" row="5" col="1"></Label>
-        <Label text="21" row="5" col="2"></Label>
+    <GridLayout columns="*, *" rows="*, *, *, *, *, *">
+        <Label class="top-score-screen-header" text="NAME" row="0" col="0"></Label>
+        <Label class="top-score-screen-header" text="SCORE" row="0" col="1"></Label>
+        <Label text="{{nameOne}}" row="1" col="0"></Label>
+        <Label text="{{scoreOne}}" row="1" col="1"></Label>
+        <Label text="{{nameTwo}}" row="2" col="0"></Label>
+        <Label text="{{scoreTwo}}" row="2" col="1"></Label>
+        <Label text="{{nameThree}}" row="3" col="0"></Label>
+        <Label text="{{scoreThree}}" row="3" col="1"></Label>
+        <Label text="{{nameFour}}" row="4" col="0"></Label>
+        <Label text="{{scoreFour}}" row="4" col="1"></Label>
+        <Label text="{{nameFive}}" row="5" col="0"></Label>
+        <Label text="{{scoreFive}}" row="5" col="1"></Label>
     </GridLayout>
 </StackLayout>
