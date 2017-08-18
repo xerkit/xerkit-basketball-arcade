@@ -24,6 +24,7 @@ export class BluetoothService {
     }
 
     reset() {
+        this.setDataResult(null);
         this.setIsBluetoothEnabled(false);
         this.setbleDeviceChosen(null);
         this.setBleDevicesFound([]);
@@ -66,6 +67,14 @@ export class BluetoothService {
         this.isBleDeviceConnectedSource.next(connected);
     }
 
+    private dataResultSource = new Subject<any>();
+    dataResult$ = this.dataResultSource.asObservable();
+    dataResultObject: any = null;
+
+    setDataResult(dataResult: any) {
+        this.dataResultObject = dataResult;
+        this.dataResultSource.next(dataResult);
+    }
     listenToBluetoothEnabled(): Observable<boolean> {
         return new Observable(observer => {
             bluetooth.isBluetoothEnabled().then(enabled => observer.next(enabled))
@@ -100,25 +109,8 @@ export class BluetoothService {
         });
     }
 
-    sendMessageToBleDevice(message: string) {
-        var self = this;
-        if (this.bleDeviceChosenObject) {
-            bluetooth.writeWithoutResponse({
-                peripheralUUID: self.bleDeviceChosenObject.UUID,
-                serviceUUID: self.DEFAULT_SERVICE_UUID,
-                characteristicUUID: self.DEFAULT_CHARACTERISTIC_UUID,
-                value: self.stringToBluetoothHexString(message) // a hex
-            }).then(function (result) {
-                console.log("value written", result);
-            }, function (err) {
-                console.log("write error: " + err);
-            });
-        } else {
-            throw new Error("BLE Device not connected!");
-        }
-    }
-
     connectToBleDevice(bleDevice: any) {
+        console.log(bleDevice.UUID);
         var self = this;
         bluetooth.connect({
             UUID: bleDevice.UUID,
@@ -147,54 +139,15 @@ export class BluetoothService {
             serviceUUID: self.DEFAULT_SERVICE_UUID,
             characteristicUUID: self.DEFAULT_CHARACTERISTIC_UUID,
             onNotify: function (result) {
-                if (result) {
-                    // Handle Result here to dispatcher
-                    console.log("VALUE READ", self.bluetoothHexStringToString(result.valueRaw.toString()));
+                if (result.valueRaw) {
+                    // console.log(result.valueRaw.toString());
+                    self.setDataResult(result.valueRaw);
                 }
             }
         }).then(function () {
             console.log("Subscribed for Bluetooth Notifications");
         });
     }
-
-    stringToBluetoothHexString(str: string): string {
-        var bluetoothHexString: string = "";
-        for (var i = 0; i < str.length; i++) {
-            bluetoothHexString += `0x${str.charCodeAt(i).toString(16)}`;
-
-            if (i < (str.length - 1)) {
-                bluetoothHexString += ",";
-            }
-        }
-
-        console.log("BLUETOOTH HEX STRING: ", bluetoothHexString);
-        return bluetoothHexString;
-    }
-
-    bluetoothHexStringToString(hexString: string): string {
-        // FORMAT: <68656c6c 6f77>
-        // Should strip spaces and s    trip gt and lt
-        hexString = hexString.replace(/\W/g, '');
-
-        var hex = hexString;
-        var hexString = '';
-        var hexChar = '';
-        var substring = '';
-        for (var n = 0; n < hex.length; n += 2) {
-            substring = hex.substr(n, 2);
-            hexChar = String.fromCharCode(parseInt(substring, 16));
-            hexString += hexChar;
-        }
-
-        return hexString;
-    }
-
-    // write(bluetoothMessage): void {
-    //     console.log('Writing message: ' + JSON.stringify(bluetoothMessage));
-    //     bluetooth.write(bluetoothMessage)
-    //         .then((result) => console.log("Value written " + JSON.stringify(result)),
-    //         (error) => console.log("Write error: " + error));
-    // }
 
     getCentralDevicePermission(): Promise<boolean> {
         return bluetooth.hasCoarseLocationPermission()
@@ -208,19 +161,5 @@ export class BluetoothService {
                 return granted;
             });
     }
-
-    sendSetEngineIgnitionStatusOn(){
-        this.sendMessageToBleDevice("password|C1");
-    }
-
-    sendSetEngineIgnitionStatusOff(){
-        this.sendMessageToBleDevice("password|C0");
-    }
-
-    // disconnect(UUID: string): void {
-    //     bluetooth.disconnect({ UUID: UUID })
-    //         .then(() => console.log("Disconnected successfully"),
-    //         (err) => console.log("Disconnection error: " + err));
-    // }
 
 }
