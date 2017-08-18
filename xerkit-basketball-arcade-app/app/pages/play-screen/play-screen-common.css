@@ -20,3 +20,23 @@
     background-position: center;
     background-size: 100% 100%;
 }
+
+.minutesCount,
+.secondsCount,
+.basketScore {
+    font-size: 85;
+    font-weight: bold;
+    margin-top: 30;
+}
+
+.minutesCount {
+    margin-left: 20;
+}
+
+.secondsCount {
+    margin-right: 20;
+}
+
+.basketScore {
+    color: red;
+}

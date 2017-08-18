@@ -1,8 +1,15 @@
-<StackLayout class="backgroundImage">
-    <StackLayout height="37%" width="100%">
-        <Label text="{{timerCount}}" class="textCenterSmall" style.marginTop="30%" style.marginBottom="30%"></Label>
+<!-- <StackLayout class="backgroundImage">
+    <StackLayout orientation="horizontal" height="37%" width="100%">
+        <Label text="{{minutesCount}}" class="textCenterSmall" style.marginLeft="30%"></Label>
+        <Label text="{{secondsCount}}" class="textCenterSmall" style.marginLeft="30%"></Label>
     </StackLayout>
     <StackLayout height="57%" width="100%">
-        <Label text="25" class="textCenter" style.marginTop="30%" style.marginBottom="30%"></Label>
+        <Label text="{{basketScore}}" class="textCenter" style.marginTop="30%" style.marginBottom="30%"></Label>
     </StackLayout>
-</StackLayout>
+</StackLayout> -->
+
+<GridLayout rows="*, *" columns="*, *" class="backgroundImage">
+    <Label text="{{minutesCount}}" row="0" col="0" class="textCenter minutesCount"></Label>
+    <Label text="{{secondsCount}}" row="0" col="1" class="textCenter secondsCount"></Label>
+    <Label text="{{basketScore}}" row="1" col="0" colSpan="2" class="textCenter basketScore" horizontalAlignment="center"></Label>
+</GridLayout>

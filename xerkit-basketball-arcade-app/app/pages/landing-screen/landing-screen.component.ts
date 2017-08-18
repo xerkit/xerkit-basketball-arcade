@@ -60,6 +60,8 @@ export class LandingScreenComponent implements OnInit {
             self._ngZone.run(() => {
                 this.bleDevicesFound = devicesFound;
                 this.arrayList = this.bleDevicesFound.map(devices => devices.name);
+
+                //TO-DO: check if scanning complete before executing showModal()
                 this.showModal();
             });
         });
@@ -90,12 +92,12 @@ export class LandingScreenComponent implements OnInit {
             actions: this.arrayList
         };
 
-        dialogs.action(options).then((result) => {
-            console.log(result);
-            
-            this._bluetoothService.setbleDeviceChosen(this.bleDevicesFound[this.arrayList.indexOf(result)]);
-            this._bluetoothService.connectToBleDevice(this.bleDevicesFound[this.arrayList.indexOf(result)]);
-        });
+        //if (!this.arrayList == null) {
+            dialogs.action(options).then((result) => {
+                this._bluetoothService.setbleDeviceChosen(this.bleDevicesFound[this.arrayList.indexOf(result)]);
+                this._bluetoothService.connectToBleDevice(this.bleDevicesFound[this.arrayList.indexOf(result)]);
+            });
+        //}
     }
 
     goToPlayScreen() {
@@ -107,8 +109,10 @@ export class LandingScreenComponent implements OnInit {
     }
 
     onPlayTap() {
-        if (this.isBluetoothEnabled) {
-            //show list of bluetooth devices in a dialog
+        if(this.isBluetoothDeviceConnected) {
+            this.goToPlayScreen();
+        } else if (this.isBluetoothEnabled && !this.isBluetoothDeviceConnected) {
+            this.onScanPeripheralsTap();
         } else {
             dialogs.alert("Enable Bluetooth First").then(() => {
                 console.log("Bluetooth not enabled");
@@ -126,12 +130,5 @@ export class LandingScreenComponent implements OnInit {
     onScanPeripheralsTap() {
         this.selectedDeviceIndex = -1;
         this._bluetoothService.scanForBleDevices();
-    }
-
-    onBleDeviceTap($event) {
-        this._bluetoothService.setbleDeviceChosen(this.bleDevicesFound[$event.index]);
-        console.log(this.bleDevicesFound[$event.index]);
-
-        this._bluetoothService.connectToBleDevice(this.bleDevicesFound[$event.index]);
     }
 }
