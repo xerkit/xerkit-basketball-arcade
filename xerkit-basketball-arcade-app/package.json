@@ -22,6 +22,7 @@
     "@angular/platform-browser": "~4.2.0",
     "@angular/router": "~4.2.0",
     "nativescript-angular": "~4.2.0",
+    "nativescript-bluetooth": "^1.2.0",
     "nativescript-drop-down": "^3.1.1",
     "nativescript-screen-orientation": "^2.0.0",
     "nativescript-sound": "^1.0.4",
