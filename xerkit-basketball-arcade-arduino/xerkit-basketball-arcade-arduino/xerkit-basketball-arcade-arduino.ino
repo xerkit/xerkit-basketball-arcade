@@ -15,7 +15,7 @@ void loop()
   else  digitalWrite(LedDisp,LOW);
 
   if(digitalRead(InfraredSensorPin) == 0) {
-    Serial.print(digitalRead(InfraredSensorPin));
+    Serial.print("A");
   }
-  delay(50);
+  delay(120);
 }
