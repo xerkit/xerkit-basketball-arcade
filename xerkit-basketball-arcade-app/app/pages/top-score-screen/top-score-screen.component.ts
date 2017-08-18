@@ -1,5 +1,8 @@
 import { Component } from "@angular/core";
 import { Page }from "ui/page";
+require( "nativescript-localstorage" );
+
+localStorage.setItem('Another Plugin', 'By Master Technology');
 
 import { setCurrentOrientation, orientationCleanup } from 'nativescript-screen-orientation';
 @Component({
