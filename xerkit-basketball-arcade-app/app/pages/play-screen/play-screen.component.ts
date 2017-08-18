@@ -19,9 +19,9 @@ let sound = require('nativescript-sound');
 export class PlayScreenComponent implements OnInit, OnDestroy {
     time: number = 150000;
     seconds: any = 2;
-    minutes: any = "3" +"0";
+    minutes: any = "3" + "0";
     interval: any;
-    score: any = 0;
+    score: number = 0;
 
     dataResultsubscription: Subscription;
 
@@ -45,8 +45,11 @@ export class PlayScreenComponent implements OnInit, OnDestroy {
         setTimeout(this.playWhistle(), 2000);
 
         this.dataResultsubscription = this._bluetoothService.dataResult$.subscribe((result) => {
-            if (result){
-                this.score = this.score + 1;
+            if (result) {
+                self._ngZone.run(() => {
+                    console.log("Scored");
+                    this.score = this.score + 1;
+                });
             }
         });
     }
