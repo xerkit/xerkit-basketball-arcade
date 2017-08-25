@@ -1,8 +1,11 @@
 <StackLayout class="backgroundImage">
     <Image class="top-score-screen-header-image" src="res://top_score"></Image>
-    <GridLayout columns="*, *" rows="*, *, *, *, *, *">
+    <GridLayout columns="*, *" rows="*, *">
         <Label class="top-score-screen-header" text="NAME" row="0" col="0"></Label>
         <Label class="top-score-screen-header" text="SCORE" row="0" col="1"></Label>
-        <Label *ngFor="let name of playersName; let row = index" [text]="name" row="{{playersRow( row )}}"></Label>
+        <StackLayout *ngFor="let item of topScore" orientation="horizontal" row="1" col ="0" colSpan="2">
+            <Label text="{{item.name}}" textWrap="true"></Label>
+            <Label text="{{item.score}}" textWrap="true"></Label>
+        </StackLayout>
     </GridLayout>
 </StackLayout>
