@@ -6,6 +6,7 @@ import { BluetoothService } from '../../services/bluetooth/bluetooth.service';
 
 import { setCurrentOrientation, orientationCleanup } from 'nativescript-screen-orientation';
 import timer = require("timer");
+import { LeaderBoard, Player } from "../../models/leader-board.model";
 
 let sound = require('nativescript-sound');
 
@@ -16,19 +17,23 @@ let sound = require('nativescript-sound');
     templateUrl: "./play-screen.component.html",
     styleUrls: ["./play-screen-common.css"]
 })
+
+
 export class PlayScreenComponent implements OnInit, OnDestroy {
     time: number = 150000;
     seconds: any = 2;
     minutes: any = "3" + "0";
     interval: any;
     score: number = 0;
+    topScores: any;
+    playerName: string;
 
     dataResultsubscription: Subscription;
 
     tick = sound.create("~/sounds/tick.mp3");
     whistle = sound.create("~/sounds/whistle.mp3");
 
-    constructor(private _page: Page, private _ngZone: NgZone, private _bluetoothService: BluetoothService) {
+    constructor(private _page: Page, private _ngZone: NgZone, private _bluetoothService: BluetoothService, private _leaderBoard: LeaderBoard) {
         _page.on("navigatedTo", function () {
             setCurrentOrientation("landscape", function () {
                 console.log("landscape orientation");
@@ -38,6 +43,8 @@ export class PlayScreenComponent implements OnInit, OnDestroy {
             orientationCleanup();
         });
     };
+
+
 
     ngOnInit(): void {
         this._page.actionBarHidden = true;
@@ -57,15 +64,28 @@ export class PlayScreenComponent implements OnInit, OnDestroy {
     playWhistle() {
         this.whistle.play();
         this.interval = timer.setInterval(() => { this.decrementTimer() }, 1000); //play only at the last 10 secs
-        setTimeout(this.showInputTopScoreDialog, this.time);
+        setTimeout(this.checkTopScore(), this.time);
     }
 
     get basketScore(): string {
         return this.score + "";
     }
 
+    checkTopScore() {
+
+        this.topScores = (this._leaderBoard.getNameScore() || []);
+
+        if (this.topScores.length == 5) {
+            if(this.score > this.topScores[4].score) {
+                this.showInputTopScoreDialog();
+            } 
+        } else {
+            this.showInputTopScoreDialog();
+        }
+
+    }
+
     showInputTopScoreDialog() {
-        // if(Among Top Score) {
         let options = {
             title: "Name",
             defaultText: "Enter your name",
@@ -74,9 +94,14 @@ export class PlayScreenComponent implements OnInit, OnDestroy {
         };
 
         prompt(options).then((result: PromptResult) => {
-            console.log("Hello, " + result.text);
+            this.topScores.push({
+                name: result.text,
+                score: this.score
+            });
+            this.topScores.sort((a,b)  => a - b);
+            this.topScores.splice(5, this.topScores.length);
+            this._leaderBoard.setNameScore(this.topScores);
         });
-        // }
     }
 
     decrementTimer() {
